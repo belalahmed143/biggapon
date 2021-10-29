@@ -1,0 +1,1 @@
+web: gunicorn tolet-bangla.wsgi --log-file -
