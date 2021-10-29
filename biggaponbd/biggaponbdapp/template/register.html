@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contain %}
+    <div class="container my-5 pt-5">
+        <div class="register_page col-8 card p-3 mx-auto">
+            <h4 class="bg-info py-1" style=" height: 45px; text-align: center;">Registration</h4>
+            <form class="my-3" method="POST">
+                {% csrf_token %}
+                <div class="form">
+                    {{ form|crispy }}
+                </div>
+               <button style="padding: 4px; width: 95%; text-align: center;" class="btn btn-info my-2">Sumbit</button>
+            </form>
+            <div style="text-align: center;">
+                <a href="#"> Already have an account? </a>
+            </div>
+           
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contain %}
+<div class="container-fluid py-5 my-5 ">
+  <div class="row mx-auto">
+        <div class="col-12 col-md-5 col-lg-4">
+            <h3>Profile Informations</h3><hr>
+            <div class="card">
+              <img class="card-img-top img-fluid" src="{{user.profile.profileImg.url}}" style="width:100%">
+              <div class="card-body">              
+                <h5 class="">Name : {{user.first_name}} {{user.last_name}}</h5>
+                <p>username : {{user.username}} </p>
+                <p>email  : {{user.email}}</p>
+              </div>
+              <div class="py-3"style="text-align: center;">
+                <a class="btn btn-info px-5"  href="{% url 'up_profile' %}">Edit Profile</a>
+              </div>
+            </div>
+        </div>
+    
+        
+        <!--start user post-->
+    
+      <div class="col-12 col-md-7 col-lg-7">
+      <h3>Your Post</h3><hr>
+      <div class="row">
+        {% for p in userposts %}
+        {% if p.author == user %}
+        <div class="col-12 col-md-4 col-lg-4 my-3">
+          <a href="{% url 'post-detail' p.id %}" style="text-decoration:none; color:black">
+              <div class="card" >
+                  <img src="{{p.img.url}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <div class="media py-2">
+                          <img src="{{p.author.profile.profileImg.url}}"  class="mr-3  rounded-circle" style="width:60px;height: 60px;">
+                           <div class="media-body">
+                             <h6 class="my-3" style="text-align: left;">{{p.author}}</h6>
+                           </div>
+                         </div>
+                         {% if p.author == user %}
+                         <a class="btn btn-sm btn-info my-2 px-3" href="{% url 'post-update' p.id %}">Edit</a>
+                         <a class="btn btn-sm btn-danger my-2 px-3" href="{% url 'post-delete' p.id %}">Delete</a>
+                         {% endif %}
+                      <h5 class="card-title">{{p.title}}</h5>
+                    <p class="card-text">{{p.posted_date}}</p>
+                    <p class="card-text">{{p.location}}</p>
+                  </div>
+              </div>
+          </a>
+          </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+{% endblock %}

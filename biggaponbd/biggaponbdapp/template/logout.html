@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block contain %}
+    <div class="container my-5">
+      <div class="card shadow py-5">
+        <h1 class="py-5 text-center text-dark" >You have been logged out</h1>
+      <div class="text-center">
+        <a   href="{% url 'home'%}">Go to Home Page</a>
+        <a style="padding: 5%;"  href="{% url 'login'%}">Login</a>
+      </div>
+      </div>
+    </div>
+{% endblock %}

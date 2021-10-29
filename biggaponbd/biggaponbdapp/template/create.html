@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contain %}
+    <div class="container py-5" style="margin-top: 2%;">
+        <div class="card my-3 shadow">
+            <h4 class="bg-info py-1" style=" height: 45px; text-align: center; color: white;">Create New Post</h4>
+            <form class="my-3" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form" style="font-size: 20px; margin: 2%;">
+                    {{ form|crispy }}
+                </div>
+               <button style="padding: 6px; width: 95%; text-align: center; margin: auto; display: block;" class="btn btn-info my-2">POST</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

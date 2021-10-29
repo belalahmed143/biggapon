@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contain %}
+    <div class="container py-3 my-5">
+        <div class="up_profile" style="margin: auto; display: block;">
+            <h4 class="bg-info py-2" style=" height: 45px; text-align: center;">Change Profile Information</h4>
+            <form class="my-3" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form">
+                    {{ u_form|crispy }}
+                    {{ p_form|crispy }}
+                </div>
+               <button style="padding: 4px; width: 95%; text-align: center;" class="btn btn-info my-2">Update</button>
+            </form>
+            <div class="py-2" style="text-align: center;">
+                <a href="{% url 'profile' %}">Go to profile page</a>
+            </div>
+           
+        </div>
+    </div>
+{% endblock %}

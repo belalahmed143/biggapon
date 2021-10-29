@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load imagefit %}
+{% load static %}
+{% block contain %}
+<section>
+    <div class="container py-5" style="margin-top: 2%;">
+      <div class="row">         
+        <div class="col-8 mx-auto">
+            <div class="card my-3 pb-5 shadow"  style="margin: auto; display: block;" >
+                <a href=""> <img class="card-img-top"  src="{{ object.img|media_resize:'800x800'}}" alt="No Image" > </a>
+                  <div class="media mx-5 py-2">
+                   <img src="{{object.author.profile.profileImg.url}}"  class="mr-3  rounded-circle" style="width:60px;height: 60px;">
+                    <div class="media-body">
+                      <h6 class="my-3" style="text-align: left;">{{object.author}}</h6>
+                    </div>
+                  </div>
+                  <div class="mx-5" style="color:black; font-size: 15px;">
+                    {% if object.author == user %}
+                    <a class="btn btn-sm btn-info my-2 px-3" href="{% url 'post-update' object.id %}">Edit</a>
+                    <a class="btn btn-sm btn-danger my-2 px-3" href="{% url 'post-delete' object.id %}">Delete</a>
+                    {% endif %}
+                    <p style="color:black; font-size: 25px;"><b> {{object.title}} </b></p>
+                    <p style="font-size: 15px;">{{object.posted_date|date:'F d,y'}}</p>
+                    <p>  {{ object.location}}</p>
+                    <p > Mobile : {{object.mobile_number}}</p>
+                    <p>Description: {{object.details}}</p>
+                  </div>
+                    
+                </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
