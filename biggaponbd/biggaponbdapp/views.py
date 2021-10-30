@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.models import User
-from .models import Userpost,TopAdd,Caro,HonerProfile,Category,Contuct
+from .models import Userpost,TopAdd,Caro,HonerProfile,Category,Contuct,Category
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegistrationForm,UserUpdateform,ProfileUpdateForm
@@ -33,6 +33,7 @@ def home(request):
         phone =request.POST['phone']
         message =request.POST['message']
         sumbit=Contuct(name=name, email=email, phone=phone, message=message)
+        messages.success(request,f'Thanks for your messages')
         sumbit.save()
     return render( request,"home.html",context)
 
