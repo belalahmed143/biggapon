@@ -49,9 +49,13 @@ class PostDetailView(DetailView):
     model =Userpost
 
     def get_context_data(self, **kwargs):
+        pk =self.kwargs['pk']
         context =super().get_context_data(**kwargs)
-        category =Category.objects.all()      
+        category =Category.objects.all()
+        userpost =Userpost.objects.get(pk=pk)
+        related_product =Userpost.objects.filter(tolet_category=userpost.tolet_category).exclude(pk=pk)     
         context['category'] = category
+        context['related_product'] =related_product
         return context
 
 class PostCreateView(CreateView,UserPassesTestMixin):

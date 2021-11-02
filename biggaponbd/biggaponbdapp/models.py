@@ -33,6 +33,9 @@ class Userpost(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering =['-posted_date']
+
 class Profile(models.Model):
     user =models.OneToOneField(User, on_delete=models.CASCADE)
     profileImg =models.ImageField( upload_to='profile_picture' ,default='no_img.jpg')
